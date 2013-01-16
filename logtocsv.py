@@ -174,20 +174,27 @@ this_crystal = processFolderWithACrystal(args.foldername, args.tag)
 
 with open(outputFile, 'a') as outFile: #append so that you can do multiple ones
     csv_writer = csv.writer(outFile, delimiter=',')
-    for key, probe in sorted(this_crystal.iteritems()):
+    csv_writer.writerow(['crystal', 'probe', 'TAD', 'AD-WC', 'Max Dose',
+                        'Total I/I_1', '5.7', '4', '3.3', '2.85', '2.55', '2.32',
+                        '2.15', '2.01', '1.9', '1.8'])
+    go_on = False
+    for key, probe in sorted(this_crystal.iteritems()):   
+        resAv_I = []
+        for resbin in probe.av_I_data[1:]:
+            resAv_I.append(resbin[2])
         if probe.probe_number == 1:
             I_0 = probe.totalAv_I
-        csv_writer.writerow ([args.tag,
+            go_on = True
+        if go_on is True:
+            #print probe.probe_number
+            list_to_print = [args.tag,
                    probe.probe_number,
                    probe.tad95,
                    probe.ad_wc,
                    probe.maxDose,
-                   probe.totalAv_I/I_0
-                  ])
-        
+                   probe.totalAv_I/I_0]
+            for item in resAv_I:
+                list_to_print.append(item)
+            csv_writer.writerow (list_to_print  )
                     
-        
-        
-
-
 print 'done'
