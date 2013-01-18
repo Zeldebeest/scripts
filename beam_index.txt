@@ -1,0 +1,8 @@
+profile20x20_3_834am:
+- P3S2, P1S10
+
+focused_beamprofile_20121024.pgm
+- 55, 197, 5185
+
+bigb120x120_1.pgm
+- P3S1, P3S3, P3S9, P3S10, P2S5
