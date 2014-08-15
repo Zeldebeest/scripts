@@ -1,4 +1,4 @@
 scripts
 =======
 
-little dirty scripts
+little dirty scripts from my PhD for posterity.
